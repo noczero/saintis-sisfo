@@ -59,8 +59,13 @@ class GuruController extends Controller
         // $request->all() adalah semua inputan dari form kita validasi
 
         $validate = \Validator::make($request->all(), [
-            'nama_kelas' => 'required',
-            'tahun_ajaran' => 'required'
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required|min:6',
+            'TTL' => 'required|date:YYYY-MM-DD',
+            'gaji' => 'required',
+            'status' => 'required',
+            'no_tel' => 'required'
         ],
 
         // $after_save adalah isi session ketika form kosong dan di kembalikan lagi ke form dengan membawa session di bawah ini (lihat form bagian part alert), dengan keterangan error dan alert warna merah di ambil dari 'alert' => 'danger', dst.
@@ -87,11 +92,16 @@ class GuruController extends Controller
         ];
 
         $data = [
-            'nama_kelas' => $request->nama_kelas,
-            'tahun_ajaran' => $request->tahun_ajaran
+            'name' => $request->name,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'TTL' => $request->TTL,
+            'gaji' => $request->gaji,
+            'status' => $request->status,
+            'no_tel' => $request->no_tel
         ];
 
-        $store = Kelas::insert($data);
+        $store = Guru::insert($data);
         
         // jika berhasil kembalikan ke page form dengan membawa session after_save success.
         

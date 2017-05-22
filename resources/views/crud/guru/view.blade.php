@@ -5,7 +5,7 @@
 <div class="card">
     <div class="header">
     	<h2> Manage Kelas </h2>
-    	<a href="{{ URL('kelas/create') }}" class="btn btn-primary pull-right">Tambah</a>
+    	<a href="{{ URL('guru/create') }}" class="btn btn-primary pull-right">Tambah</a>
     	<br>
     	{{-- part alert --}}
 		
@@ -51,7 +51,7 @@
 						<td>{{ $no++ }}</td>
 						<td>{{ $guru->name }}</td>
 						<td>{{ $guru->TTL }}</td>
-						<td>{{ $guru->umur }}</td>
+						<td>{{ $guru->age }}</td>
 						<td>{{ $guru->gaji }}</td>
 						<td>
 						@foreach ($guru->kelas as $guru_kelas)

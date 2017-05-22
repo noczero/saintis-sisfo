@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon; //for age
+
 
 class Guru extends Authenticatable
 {
@@ -15,7 +17,7 @@ class Guru extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'TTL' , 'umur' , 'gaji' , 'kelas_ajar' , 'mapel_ajar' , 'hari_ajar' , 'status' , 'no_tel' ,
+        'name', 'username', 'password', 'TTL' , 'gaji' ,  'status' , 'no_tel' ,
     ];
 
     /**
@@ -26,6 +28,15 @@ class Guru extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // mutators to calculate age
+    public function getAgeAttribute()
+    {
+        $dateNow = Carbon::now();
+        return ($dateNow->diffInYears(Carbon::parse($this->attributes['TTL'])));    
+    }
+
+
 
     public function kelas() {
         return $this->belongsToMany(Kelas::class)->withPivot('mapel'); // pivot tabel ada kolom mapel many to many relationship

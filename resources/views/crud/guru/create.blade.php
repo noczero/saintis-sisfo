@@ -3,16 +3,12 @@
 
 @section('content')
 
-
-
 					<div class="card">
                         <div class="header">
                             <h2>
                                 Tambah Kelas
-             
-                                
                             </h2>
-                            <a href="{{ URL('kelas') }}" class="btn btn-raised btn-danger pull-right">Kembali</a>
+                            <a href="{{ URL('guru') }}" class="btn btn-raised btn-danger pull-right">Kembali</a>
                             <br>
                             {{-- part alert --}}
 							@if (Session::has('after_save'))
@@ -29,20 +25,65 @@
 							{{-- end part alert --}}
                         </div>
                         <div class="body">
-                            <form action="{{ URL('kelas/store') }}" method="POST">
+                            <form action="{{ URL('guru/store') }}" method="POST">
                             	{{ csrf_field() }}
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="nama_kelas">
-                                        <label class="form-label">Nama Kelas</label>
+                                        <input  class="form-control" type="text" name="name">
+                                        <label class="form-label">Nama Guru</label>
                                     </div>
+                                    <div class="help-info">Required</div>
                                 </div>
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="tahun_ajaran">
-                                        <label class="form-label">Tahun Ajaran ex: 2016/2017</label>
+                                        <input  class="form-control" type="text" name="username">
+                                        <label class="form-label">Username</label>
                                     </div>
+                                    <div class="help-info">Required</div>
+                                </div>
+
+                                 <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="password" name="password">
+                                        <label class="form-label">Password</label>
+                                    </div>
+                                    <div class="help-info">Min.Value:6</div>
+                                </div>
+
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="text" name="TTL">
+                                        <label class="form-label">Tempat Tanggal Lahir</label>
+                                    </div>
+                                    <div class="help-info">YYYY-MM-DD. ex : 1997-06-21</div>
+                                </div>
+
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="text" name="gaji">
+                                        <label class="form-label">Gaji</label>
+                                    </div>
+                                    <div class="help-info">Ex: 1000000</div>
+                                </div>
+
+
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="text" name="status">
+                                        <label class="form-label">Status</label>
+                                    </div>
+                                    <div class="help-info">Ex: Menikah/Mahasiswa/Pelajar</div>
+
+                                </div>
+
+                                 <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="text" name="no_tel">
+                                        <label class="form-label">No. Telp</label>
+                                    </div>
+                                    <div class="help-info">Ex: 08821239233</div>
+
                                 </div>
 								
 								<button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
