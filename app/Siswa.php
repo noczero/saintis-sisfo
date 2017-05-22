@@ -15,7 +15,7 @@ class Siswa extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'TTL' , 'umur' , 'asal_sekolah' ,'paket_bimbel' , 'kelas_bimbel',
+        'name', 'username', 'password', 'TTL' , 'umur' , 'asal_sekolah' ,'paket_bimbel' , 'id_kelas',
     ];
 
     /**

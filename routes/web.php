@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/test', function () {
+    return view('test');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -47,6 +52,14 @@ Route::prefix('manager')->group(function() {
 	Route::get('/', 'ManagerController@index')->name('manager.dashboard'); // untuk tampilan utama
 });
 
-
+// CRUD untuk kelas
+Route::group(['prefix' => 'kelas'], function(){
+	Route::get('/', 'KelasController@index');
+	Route::get('/create', 'KelasController@create');
+	Route::post('/store', 'KelasController@store');
+	Route::get('/show/{id}', 'KelasController@show');
+	Route::post('/update/{id}', 'KelasController@update');
+	Route::post('/destroy/{id}', 'KelasController@destroy');
+});
 
 
