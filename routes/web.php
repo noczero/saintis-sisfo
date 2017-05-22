@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'HomeController@index');
 
 
 Route::get('/test', function () {
@@ -43,6 +45,13 @@ Route::prefix('guru')->group(function() {
 	Route::get('/login', 'Auth\GuruLoginController@showLoginForm')->name('guru.login'); // untuk login
 	Route::post('/login', 'Auth\GuruLoginController@login')->name('guru.login.submit');
 	Route::get('/', 'GuruController@index')->name('guru.dashboard'); // untuk tampilan utama
+
+	//CRUD
+	Route::get('/create', 'GuruController@create');
+	Route::post('/store', 'GuruController@store');
+	Route::get('/show/{id}', 'GuruController@show');
+	Route::post('/update/{id}', 'GuruController@update');
+	Route::delete('/destroy/{id}', 'GuruController@destroy');
 });
 
 //dibuat prefix biar sederhana 
@@ -59,7 +68,10 @@ Route::group(['prefix' => 'kelas'], function(){
 	Route::post('/store', 'KelasController@store');
 	Route::get('/show/{id}', 'KelasController@show');
 	Route::post('/update/{id}', 'KelasController@update');
-	Route::post('/destroy/{id}', 'KelasController@destroy');
+	Route::delete('/destroy/{id}', 'KelasController@destroy');
 });
+
+
+
 
 

@@ -29,32 +29,51 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Nama Kelas</th>
-					<th>Tahun Ajar</th>
+					<th>Nama Guru</th>
+					<th>TTL</th>
+					<th>Umur</th>
+					<th>Gaji</th>
+					<th>Kelas Ajar</th>
+					<th>Mapel Ajar</th>
+					<th>Status</th>
+					<th>No. Telp</th>
 					<th>Edit</th>
 					<th>Delete</th>
-
 				</tr>
 			</thead>
 			<tbody>
 				@php(
 					$no = 1 {{-- buat nomor urut --}}
 					)
-				{{-- loop all kelas --}}
-				@foreach ($kelass as $kelas)
+				{{-- loop all guru --}}
+				@foreach ($gurus as $guru)
 					<tr>
 						<td>{{ $no++ }}</td>
-						<td>{{ $kelas->nama_kelas }}</td>
-						<td>{{ $kelas->tahun_ajaran }}</td>
+						<td>{{ $guru->name }}</td>
+						<td>{{ $guru->TTL }}</td>
+						<td>{{ $guru->umur }}</td>
+						<td>{{ $guru->gaji }}</td>
+						<td>
+						@foreach ($guru->kelas as $guru_kelas)
+							{{ $guru_kelas->nama_kelas }} <br>
+						@endforeach
+						</td>
+						<td>
+						@foreach ($guru->kelas as $guru_kelas)
+							{{ $guru_kelas->pivot->mapel }} <br>
+						@endforeach
+						</td>
+						<td>{{ $guru->status }}</td>
+						<td>{{ $guru->no_tel }}</td>
 						<td width="5%">
 							<p data-placement="top" data-toggle="tooltip" title="Edit">
-								<a href="{{ URL('kelas/show') }}/{{ $kelas->id }}" class="btn btn-info btn-xs">
+								<a href="{{ URL('guru/show') }}/{{ $guru->id }}" class="btn btn-info btn-xs">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a>
 							</p>
 						</td>
 						<td width="5%">
-							<form class="form-group" action="{{ 'kelas/destroy/'.$kelas->id }}" method="POST">
+							<form class="form-group" action="{{ 'guru/destroy/'.$guru->id }}" method="POST">
 								{{csrf_field()}}
 								{{ method_field('DELETE')}}
 								<button class="btn btn-danger btn-xs" type="submit" ><span class="glyphicon glyphicon-trash"></span></button>

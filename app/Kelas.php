@@ -16,4 +16,7 @@ class Kelas extends Authenticatable
     protected $table = 'kelass';
     protected $fillable = ['nama_kelas', 'tahun_ajaran'];
 
+    public function guru() {
+    	return $this->belongsToMany(Guru::class);
+    }
 }

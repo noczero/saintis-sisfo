@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Guru;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //check
+        $gurus = Guru::with('kelas')->get(); //get many to many data with the pivot 'kelas is the method in model'
+
+        return $gurus;
+        // return view('home');
     }
 }

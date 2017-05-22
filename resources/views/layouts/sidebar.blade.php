@@ -2,7 +2,7 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="index.html">
+                        <a href="{{'/manager'}}">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -15,9 +15,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="pages/helper-classes.html">
+                        <a href="{{ URL('guru') }}">
                             <i class="material-icons">layers</i>
-                            <span>Helper Classes</span>
+                            <span>Guru</span>
                         </a>
                     </li>         
                     @endif
