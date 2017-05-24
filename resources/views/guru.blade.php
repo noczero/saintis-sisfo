@@ -1,17 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Guru Dashboard ,</div>
-
-                <div class="panel-body">
-                    You are logged in as <<strong> Guru </strong>
-                </div>
+            <div class="block-header">
+                <h2>GURU DASHBOARD</h2>
             </div>
-        </div>
-    </div>
-</div>
+
 @endsection

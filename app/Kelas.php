@@ -19,4 +19,8 @@ class Kelas extends Authenticatable
     public function guru() {
     	return $this->belongsToMany(Guru::class);
     }
+
+    public function siswa(){
+    	return $this->hasMany('App\Siswa');
+    }
 }

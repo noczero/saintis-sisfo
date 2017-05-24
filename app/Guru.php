@@ -36,8 +36,6 @@ class Guru extends Authenticatable
         return ($dateNow->diffInYears(Carbon::parse($this->attributes['TTL'])));    
     }
 
-
-
     public function kelas() {
         return $this->belongsToMany(Kelas::class)->withPivot('mapel'); // pivot tabel ada kolom mapel many to many relationship
     }

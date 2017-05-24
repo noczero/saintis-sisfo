@@ -25,9 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         //check
-        $gurus = Guru::with('kelas')->get(); //get many to many data with the pivot 'kelas is the method in model'
+         // $gurus = Guru::with('kelas')->get(); //get many to many data with the pivot 'kelas is the method in model'
 
-        return $gurus;
-        // return view('home');
+         // dd($gurus);
+        // return $gurus;
+         return view('welcome');
     }
 }

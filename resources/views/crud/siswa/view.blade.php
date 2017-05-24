@@ -5,7 +5,7 @@
 <div class="card">
     <div class="header">
     	<h2> Manage Guru </h2>
-    	<a href="{{ URL('manage-guru/create') }}" class="btn btn-primary pull-right">Tambah</a>
+    	<a href="{{ URL('manage-siswa/create') }}" class="btn btn-primary pull-right">Tambah</a>
     	<br>
     	{{-- part alert --}}
 		
@@ -29,11 +29,11 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Nama Guru</th>
-					<th>TTL</th>
+					<th>Nama Siswa</th>
+					<th>Tanggal Lahir</th>
 					<th>Umur</th>
-					<th>Gaji</th>
-					<th>Kelas Ajar</th>
+					<th>Asal Sekolah</th>
+					<th>Paket Bimbel</th>
 					<th>Mapel Ajar</th>
 					<th>Status</th>
 					<th>No. Telp</th>
@@ -45,35 +45,35 @@
 				@php(
 					$no = 1 {{-- buat nomor urut --}}
 					)
-				{{-- loop all guru --}}
-				@foreach ($gurus as $guru)
+				{{-- loop all siswa --}}
+				@foreach ($siswas as $siswa)
 					<tr>
 						<td>{{ $no++ }}</td>
-						<td>{{ $guru->name }}</td>
-						<td>{{ $guru->TTL }}</td>
-						<td>{{ $guru->age }}</td>
-						<td>{{ $guru->gaji }}</td>
+						<td>{{ $siswa->name }}</td>
+						<td>{{ $siswa->TTL }}</td>
+						<td>{{ $siswa->age }}</td>
+						<td>{{ $siswa->gaji }}</td>
 						<td>
-						@foreach ($guru->kelas as $guru_kelas)
+						@foreach ($siswa->kelas as $guru_kelas)
 							{{ $guru_kelas->nama_kelas }} <br>
 						@endforeach
 						</td>
 						<td>
-						@foreach ($guru->kelas as $guru_kelas)
+						@foreach ($siswa->kelas as $guru_kelas)
 							{{ $guru_kelas->pivot->mapel }} <br>
 						@endforeach
 						</td>
-						<td>{{ $guru->status }}</td>
-						<td>{{ $guru->no_tel }}</td>
+						<td>{{ $siswa->status }}</td>
+						<td>{{ $siswa->no_tel }}</td>
 						<td width="5%">
 							<p data-placement="top" data-toggle="tooltip" title="Edit">
-								<a href="{{ URL('manage-guru/show') }}/{{ $guru->id }}" class="btn btn-info btn-xs">
+								<a href="{{ URL('manage-siswa/show') }}/{{ $siswa->id }}" class="btn btn-info btn-xs">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a>
 							</p>
 						</td>
 						<td width="5%">
-							<form class="form-group" action="{{ 'manage-guru/destroy/'.$guru->id }}" method="POST">
+							<form class="form-group" action="{{ 'manage-siswa/destroy/'.$siswa->id }}" method="POST">
 								{{csrf_field()}}
 								{{ method_field('DELETE')}}
 								<button class="btn btn-danger btn-xs" type="submit" ><span class="glyphicon glyphicon-trash"></span></button>

@@ -17,7 +17,6 @@
 
 Route::get('/', 'HomeController@index');
 
-
 Route::get('/test', function () {
     return view('test');
 });
@@ -45,13 +44,25 @@ Route::prefix('guru')->group(function() {
 	Route::get('/login', 'Auth\GuruLoginController@showLoginForm')->name('guru.login'); // untuk login
 	Route::post('/login', 'Auth\GuruLoginController@login')->name('guru.login.submit');
 	Route::get('/', 'GuruController@index')->name('guru.dashboard'); // untuk tampilan utama
+});
 
+Route::prefix('manage-guru')->group(function() {
 	//CRUD
-	Route::get('/create', 'GuruController@create');
-	Route::post('/store', 'GuruController@store');
-	Route::get('/show/{id}', 'GuruController@show');
-	Route::post('/update/{id}', 'GuruController@update');
-	Route::delete('/destroy/{id}', 'GuruController@destroy');
+	Route::get('/', 'ManageGuruController@manage');
+	Route::get('/create', 'ManageGuruController@create');
+	Route::post('/store', 'ManageGuruController@store');
+	Route::get('/show/{id}', 'ManageGuruController@show');
+	Route::post('/update/{id}', 'ManageGuruController@update');
+	Route::delete('/destroy/{id}', 'ManageGuruController@destroy');
+});
+
+Route::prefix('manage-siswa')->group(function() {
+	Route::get('/', 'ManageSiswaController@index');
+	Route::get('/create', 'ManageSiswaController@create');
+	Route::post('/store', 'ManageSiswaController@store');
+	Route::get('/show/{id}', 'ManageSiswaController@show');
+	Route::post('/update/{id}', 'ManageSiswaController@update');
+	Route::delete('/destroy/{id}', 'ManageSiswaController@destroy');
 });
 
 //dibuat prefix biar sederhana 
