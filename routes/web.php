@@ -83,6 +83,24 @@ Route::group(['prefix' => 'kelas'], function(){
 });
 
 
+Route::get('profile-manager/{id}' , 'ManagerController@show');
+Route::post('profile-manager/update/{id}' , 'ManagerController@update');
+
+Route::get('profile-siswa/{id}' , 'SiswaController@show');
+Route::post('profile-siswa/update/{id}' , 'SiswaController@update');
+
+Route::get('profile-admin/{id}' , 'AdminController@show');
+Route::post('profile-admin/update/{id}' , 'AdminController@update');
+
+Route::get('profile-guru/{id}' , 'GuruController@show');
+Route::post('profile-guru/update/{id}' , 'GuruController@update');
 
 
-
+Route::prefix('absensi-kelas')->group(function() {
+	Route::get('/{id}', 'AbsensiController@index');
+	Route::get('/create', 'AbsensiController@create');
+	Route::post('/store', 'AbsensiController@store');
+	Route::get('/show/{id}', 'AbsensiController@show');
+	Route::post('/update/{id}', 'AbsensiController@update');
+	Route::delete('/destroy/{id}', 'AbsensiController@destroy');
+});

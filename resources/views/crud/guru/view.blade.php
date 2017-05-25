@@ -25,7 +25,7 @@
 		{{-- end part alert --}}
     </div>
     <div class="body">
-    	<table class="table table-bordered table-hover ">
+    	<table class="table table-hover ">
 			<thead>
 				<tr>
 					<th>No</th>

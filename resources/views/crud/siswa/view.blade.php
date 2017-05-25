@@ -4,7 +4,7 @@
 
 <div class="card">
     <div class="header">
-    	<h2> Manage Guru </h2>
+    	<h2> Manage Siswa </h2>
     	<a href="{{ URL('manage-siswa/create') }}" class="btn btn-primary pull-right">Tambah</a>
     	<br>
     	{{-- part alert --}}
@@ -25,7 +25,7 @@
 		{{-- end part alert --}}
     </div>
     <div class="body">
-    	<table class="table table-bordered table-hover ">
+    	<table class="table table-hover ">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -34,8 +34,7 @@
 					<th>Umur</th>
 					<th>Asal Sekolah</th>
 					<th>Paket Bimbel</th>
-					<th>Mapel Ajar</th>
-					<th>Status</th>
+					<th>Kelas</th>
 					<th>No. Telp</th>
 					<th>Edit</th>
 					<th>Delete</th>
@@ -52,18 +51,9 @@
 						<td>{{ $siswa->name }}</td>
 						<td>{{ $siswa->TTL }}</td>
 						<td>{{ $siswa->age }}</td>
-						<td>{{ $siswa->gaji }}</td>
-						<td>
-						@foreach ($siswa->kelas as $guru_kelas)
-							{{ $guru_kelas->nama_kelas }} <br>
-						@endforeach
-						</td>
-						<td>
-						@foreach ($siswa->kelas as $guru_kelas)
-							{{ $guru_kelas->pivot->mapel }} <br>
-						@endforeach
-						</td>
-						<td>{{ $siswa->status }}</td>
+						<td>{{ $siswa->asal_sekolah }}</td>
+						<td>{{ $siswa->paket_bimbel	}}</td>
+						<td>{{ $siswa->kelas->nama_kelas }}</td>
 						<td>{{ $siswa->no_tel }}</td>
 						<td width="5%">
 							<p data-placement="top" data-toggle="tooltip" title="Edit">

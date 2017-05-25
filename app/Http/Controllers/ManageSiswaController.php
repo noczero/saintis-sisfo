@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Siswa;
+use App\Kelas;
 
 class ManageSiswaController extends Controller
 {
@@ -27,7 +28,12 @@ class ManageSiswaController extends Controller
 
     public function create()
     {
-        return view('crud.siswa.create');
+        // mengambil data kelas untuk di form select
+
+        $kelass = Kelas::all();
+        //dd($kelass);
+
+        return view('crud.siswa.create' , compact('kelass'));
     }
 
 
@@ -39,8 +45,14 @@ class ManageSiswaController extends Controller
         // $request->all() adalah semua inputan dari form kita validasi
 
         $validate = \Validator::make($request->all(), [
-            'nama_kelas' => 'required',
-            'tahun_ajaran' => 'required'
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required|min:6',
+            'TTL' => 'required|date:YYYY-MM-DD',
+            'asal_sekolah' => 'required',
+            'kelas_id' => 'required',
+            'paket_bimbel' => 'required',
+            'no_tel' => 'required',
         ],
 
         // $after_save adalah isi session ketika form kosong dan di kembalikan lagi ke form dengan membawa session di bawah ini (lihat form bagian part alert), dengan keterangan error dan alert warna merah di ambil dari 'alert' => 'danger', dst.
@@ -60,18 +72,25 @@ class ManageSiswaController extends Controller
 
         // $after_save adalah isi session ketika data berhasil disimpan dan di kembalikan lagi ke form dengan membawa session di bawah ini (lihat form bagian part alert), dengan keterangan success dan alert warna merah di ganti menjadi warna hijau di ambil dari 'alert' => 'success', dst.
         $after_save = [
-        'alert' => 'success',
-        'title' => 'Good Job!',
-        'text-1' => 'Tambah lagi',
-        'text-2' => 'Atau kembali.'
+            'alert' => 'success',
+            'title' => 'Good Job!',
+            'text-1' => 'Tambah lagi',
+            'text-2' => 'Atau kembali.'
         ];
 
         $data = [
-            'nama_kelas' => $request->nama_kelas,
-            'tahun_ajaran' => $request->tahun_ajaran
+            'name' => $request->name,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'TTL' => $request->TTL,
+            'asal_sekolah' => $request->asal_sekolah,
+            'kelas_id' => $request->kelas_id,
+            'paket_bimbel' => $request->paket_bimbel,
+            'no_tel' => $request->no_tel
+            
         ];
 
-        $store = Kelas::insert($data);
+        $store = Siswa::insert($data);
         
         // jika berhasil kembalikan ke page form dengan membawa session after_save success.
         
@@ -81,8 +100,9 @@ class ManageSiswaController extends Controller
 
     public function show($id)
     {
-       $showById = Kelas::find($id);
-       return view('crud.siswa.edit' , compact('showById'));
+       $showById = Siswa::find($id);
+       $kelass = Kelas::all();
+       return view('crud.siswa.edit' , compact('showById' ,'kelass'));
     }
 
     public function edit(Kelas $siswa)
@@ -94,8 +114,12 @@ class ManageSiswaController extends Controller
     {
         
         $validate = \Validator::make($request->all(), [
-            'nama_kelas' => 'required',
-            'tahun_ajaran' => 'required'
+            'name' => 'required',
+            'TTL' => 'required|date:YYYY-MM-DD',
+            'asal_sekolah' => 'required',
+            'kelas_id' => 'required',
+            'paket_bimbel' => 'required',
+            'no_tel' => 'required'
         ],
 
          // $after_update adalah isi session ketika form kosong dan di kembalikan lagi ke form dengan membawa session di bawah ini (lihat form bagian part alert), dengan keterangan error dan alert warna merah di ambil dari 'alert' => 'danger', dst.
@@ -122,11 +146,15 @@ class ManageSiswaController extends Controller
         ];
 
         $data = [
-            'nama_kelas' => $request->nama_kelas,
-            'tahun_ajaran' => $request->tahun_ajaran
+            'name' => $request->name,
+            'TTL' => $request->TTL,
+            'asal_sekolah' => $request->asal_sekolah,
+            'kelas_id' => $request->kelas_id,
+            'paket_bimbel' => $request->paket_bimbel,
+            'no_tel' => $request->no_tel
         ];
 
-        $update = Kelas::where('id', $id)->update($data);
+        $update = Siswa::where('id', $id)->update($data);
 
         return redirect()->to('manage-siswa')->with('after_update', $after_update);
     }
@@ -134,7 +162,7 @@ class ManageSiswaController extends Controller
 
     public function destroy($id)
     {
-        $destroy = Kelas::findOrFail($id)->delete();
+        $destroy = Siswa::findOrFail($id)->delete();
         
         return redirect()->back()->with('success');
     }

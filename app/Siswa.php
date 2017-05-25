@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon; //for age
 
 class Siswa extends Authenticatable
 {
@@ -15,7 +16,7 @@ class Siswa extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'TTL' ,  'asal_sekolah' ,'paket_bimbel' , 'kelas_id',
+        'name', 'username', 'password', 'TTL' ,  'asal_sekolah' ,'paket_bimbel' , 'kelas_id', 'no_tel'
     ];
 
     /**

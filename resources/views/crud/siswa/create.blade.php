@@ -6,9 +6,9 @@
 					<div class="card">
                         <div class="header">
                             <h2>
-                                Tambah Guru
+                                Tambah Siswa
                             </h2>
-                            <a href="{{ URL('manage-guru') }}" class="btn btn-raised btn-danger pull-right">Kembali</a>
+                            <a href="{{ URL('manage-siswa') }}" class="btn btn-raised btn-danger pull-right">Kembali</a>
                             <br>
                             {{-- part alert --}}
 							@if (Session::has('after_save'))
@@ -25,12 +25,12 @@
 							{{-- end part alert --}}
                         </div>
                         <div class="body">
-                            <form action="{{ URL('manage-guru/store') }}" method="POST">
+                            <form action="{{ URL('manage-siswa/store') }}" method="POST">
                             	{{ csrf_field() }}
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input  class="form-control" type="text" name="name">
-                                        <label class="form-label">Nama Guru</label>
+                                        <label class="form-label">Nama Siswa</label>
                                     </div>
                                     <div class="help-info">Required</div>
                                 </div>
@@ -61,20 +61,34 @@
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="gaji">
-                                        <label class="form-label">Gaji</label>
+                                        <input  class="form-control" type="text" name="asal_sekolah">
+                                        <label class="form-label">Asal Sekolah</label>
                                     </div>
-                                    <div class="help-info">Ex: 1000000</div>
+                                    <div class="help-info">Ex: SMA Negeri 1 Bandung</div>
                                 </div>
 
+                                <div class="form-group row clearfix">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Kelas</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select class="show-tick" width="100%" name="kelas_id">
+                                              <option value="">-- Pilih Kelasnya --</option>
+                                                  {{-- loop all kelas as kelas --}}
+                                                  @foreach ($kelass as $kelas)
+                                                    <option value="{{ $kelas->id }}">{{ strtoupper($kelas->nama_kelas) }}</option>
+                                                  @endforeach
+                                                  {{-- end loop --}}
+                                            </select>
+                                        </div>
+                                </div>
 
-                                <div class="form-group form-float">
+                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="status">
-                                        <label class="form-label">Status</label>
+                                        <input  class="form-control" type="text" name="paket_bimbel">
+                                        <label class="form-label">Paket Bimbel</label>
                                     </div>
-                                    <div class="help-info">Ex: Menikah/Mahasiswa/Pelajar</div>
-
+                                    <div class="help-info">Ex: Plus, Normal , SBMPTN</div>
                                 </div>
 
                                  <div class="form-group form-float">

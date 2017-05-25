@@ -120,7 +120,16 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            @if (Auth::guard('manager')->check())
+                            <li><a href="{{ url('profile-manager/'.Auth::user()->id)}}"><i class="material-icons">person</i>Profile</a></li>
+                            @elseif (Auth::guard('siswa')->check())
+                            <li><a href="{{ url('profile-siswa/'.Auth::user()->id)}}"><i class="material-icons">person</i>Profile</a></li>
+                            @elseif (Auth::guard('admin')->check())
+                            <li><a href="{{ url('profile-admin/'.Auth::user()->id)}}"><i class="material-icons">person</i>Profile</a></li>
+                            @elseif (Auth::guard('guru')->check())
+                            <li><a href="{{ url('profile-guru/'.Auth::user()->id)}}"><i class="material-icons">person</i>Profile</a></li>
+                            @endif
+
                             <li role="seperator" class="divider"></li>
                             <li>
                                         <a href="{{ route('logout') }}"
@@ -200,6 +209,9 @@
  -->
     <!-- Demo Js -->
     <script src="{{ asset ("js/demo.js") }}"></script>
+
+    <script src="{{ asset('js/pages/charts/chartjs.js') }}"></script>
+
 </body>
 
 </html>

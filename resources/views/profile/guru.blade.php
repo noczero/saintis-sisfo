@@ -1,15 +1,12 @@
-
-@extends('layouts.template') 
+@extends('layouts.template')
 
 @section('content')
-
 					<div class="card">
                         <div class="header">
                             <h2>
-                                Edit Guru
+                                Guru Profile
                             </h2>
-                            <a href="{{ URL('manage-guru') }}" class="btn btn-raised btn-danger pull-right">Kembali</a>
-                            <br>
+                          
                             {{-- part alert --}}
 							@if (Session::has('after_update'))
 								<div class="row">
@@ -25,44 +22,45 @@
 							{{-- end part alert --}}
                         </div>
                         <div class="body">
-                            <form action="{{ URL('manage-guru/update/'. $showById->id) }}" method="POST">
+                            <form action="{{ URL('profile-guru/update/'. $showById->id) }}" method="POST">
                             	{{ csrf_field() }}
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="name" value="{{ $showById->name }}">
+                                        <input  class="form-control" type="text" name="name" value="{{ $showById->name}}">
                                         <label class="form-label">Nama Guru</label>
                                     </div>
                                     <div class="help-info">Required</div>
                                 </div>
 
-                               <div class="form-group form-float">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="TTL" value="{{ $showById->TTL }}">
-                                        <label class="form-label">Tempat Tanggal Lahir</label>
+                                        <input  class="form-control" type="text" name="username" value="{{ $showById->username}}">
+                                        <label class="form-label">Username</label>
                                     </div>
                                     <div class="help-info">YYYY-MM-DD. ex : 1997-06-21</div>
                                 </div>
 
+
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="password" name="password" value="{{ $showById->username}}">
+                                        <label class="form-label">Password</label>
+                                    </div>
+                                    <div class="help-info">YYYY-MM-DD. ex : 1997-06-21</div>
+                                </div>
+
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input  class="form-control" type="text" name="TTL" value="{{ $showById->TTL }}">
+                                        <label class="form-label">Tanggal Lahir</label>
+                                    </div>
+                                    <div class="help-info">Ex: SMA Negeri 1 Bandung</div>
+                                </div>
+
                                  <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="gaji" value="{{ $showById->gaji }}">
-                                        <label class="form-label">Gaji</label>
-                                    </div>
-                                    <div class="help-info">Ex: 1000000</div>
-                                </div>
-
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input  class="form-control" type="text" name="status" value="{{ $showById->status }}">
-                                        <label class="form-label">Status</label>
-                                    </div>
-                                    <div class="help-info">Ex: Menikah/Mahasiswa/Pelajar</div>
-                                </div>
-
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input  class="form-control" type="text" name="no_tel" value="{{ $showById->no_tel }}">
-                                        <label class="form-label">No. Telp</label>
+                                        <input  class="form-control" type="text" name="no_tel" value="{{ $showById->no_tel}}">
+                                        <label class="form-label">No. Telepon</label>
                                     </div>
                                     <div class="help-info">Ex: 08821239233</div>
 
@@ -75,7 +73,4 @@
                             </form>
                         </div>
 					</div>
-
-                   
-
-@stop
+@endsection
