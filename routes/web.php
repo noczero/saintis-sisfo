@@ -24,6 +24,9 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Registrasi Siswa
+Route::get('/siswa/registrasi', 'RegistrasiSiswa@create')->name('registrasi.siswa');
+Route::post('/siswa/store', 'RegistrasiSiswa@store')->name('registrasi.store.siswa');
 
 //dibuat prefix biar sederhana admin/login
 Route::prefix('admin')->group(function() {
@@ -37,6 +40,8 @@ Route::prefix('siswa')->group(function() {
 	Route::get('/login', 'Auth\SiswaLoginController@showLoginForm')->name('siswa.login'); // untuk login
 	Route::post('/login', 'Auth\SiswaLoginController@login')->name('siswa.login.submit');
 	Route::get('/', 'SiswaController@index')->name('siswa.dashboard'); // untuk tampilan utama
+
+
 });
 
 //dibuat prefix biar sederhana 

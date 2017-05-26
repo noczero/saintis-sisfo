@@ -48,6 +48,11 @@
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
                     </div>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6">
+                            <a href="{{ route('registrasi.siswa') }}">Register Now!</a>
+                        </div>
+                    </div>
                     
                 </form>
  @endsection

@@ -53,6 +53,21 @@
                     
                     </li>
                           
+                    <!-- SideBar Menu for Manager -->
+                    @elseif (Auth::guard('siswa')->check()) 
+                    <li class="active">
+                        <a href="{{ url('siswa') }}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">perm_media</i>
+                            <span>Lihat Materi</span>
+                        </a>
+                    </li>
+                          
                     @endif
 
 

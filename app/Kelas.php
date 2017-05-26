@@ -10,7 +10,7 @@ class Kelas extends Authenticatable
 {
     //
     //use Authenticatable;
-   protected $guard = 'manager';
+   //protected $guard = 'manager';
 	//protected $guard = 'manager'; // harus sama di guards di auth.php
 
     protected $table = 'kelass';
