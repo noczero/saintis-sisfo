@@ -52,6 +52,13 @@
                         </ul>
                     
                     </li>
+
+                    <li>
+                        <a href="{{ url('upload-materi') }}">
+                            <i class="material-icons">library_books</i>
+                            <span>Upload Materi</span>
+                        </a>
+                    </li>
                           
                     <!-- SideBar Menu for Manager -->
                     @elseif (Auth::guard('siswa')->check()) 

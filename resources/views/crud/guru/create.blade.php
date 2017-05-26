@@ -53,10 +53,10 @@
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input  class="form-control" type="text" name="TTL">
-                                        <label class="form-label">Tempat Tanggal Lahir</label>
+                                        <input  class="form-control" type="date" name="TTL">
+                                        <label class="form-label"> Tanggal Lahir</label>
                                     </div>
-                                    <div class="help-info">YYYY-MM-DD. ex : 1997-06-21</div>
+                                    <div class="help-info">Pilih tanggal Lahir</div>
                                 </div>
 
                                 <div class="form-group form-float">

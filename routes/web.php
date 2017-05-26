@@ -109,3 +109,10 @@ Route::prefix('absensi-kelas')->group(function() {
 	Route::post('/update/{id}', 'AbsensiController@update');
 	Route::delete('/destroy/{id}', 'AbsensiController@destroy');
 });
+
+
+Route::prefix('upload-materi')->group(function() {
+	Route::get('/' , 'UploadMateriController@index');
+	Route::get('/{id}' , 'UploadMateriController@create');
+	Route::post('/upload' , 'UploadMateriController@upload')->name('upload.submit');
+});
