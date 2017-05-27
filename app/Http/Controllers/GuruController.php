@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 
@@ -38,7 +39,9 @@ class GuruController extends Controller
         //$this->middleware('auth:guru'); // cuma yang punya guard admin yang bisa
         $kelass = Guru::find($user->id)->kelas()->get();
         //dd($kelass);
-        return view('guru' , compact('kelass'));
+         $jumlahGuru = DB::table('gurus')->count();
+        $jumlahSiswa = DB::table('siswas')->count();
+        return view('guru' , compact('kelass' , 'jumlahGuru' , 'jumlahSiswa'));
     }
 
     public function show($id)

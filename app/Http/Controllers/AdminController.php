@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -23,6 +24,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin'); //redirect ke view
+
+        $jumlahGuru = DB::table('gurus')->count();
+        $jumlahSiswa = DB::table('siswas')->count();
+        $kelass = DB::table('kelass')->orderBy('nama_kelas')->get();
+
+        return view('admin' , compact('jumlahGuru', 'jumlahSiswa' ,'kelass')); //redirect ke view
     }
 }

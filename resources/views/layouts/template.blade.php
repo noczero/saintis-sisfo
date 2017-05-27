@@ -211,7 +211,8 @@
     <script src="{{ asset ("js/demo.js") }}"></script>
 
     <script src="{{ asset('js/pages/charts/chartjs.js') }}"></script>
-
+        
+    @yield('customJS')
 </body>
 
 </html>

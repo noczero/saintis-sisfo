@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Manager;
 
 class ManagerController extends Controller
@@ -24,7 +25,10 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        return view('manager'); //redirect ke view
+        $jumlahGuru = DB::table('gurus')->count();
+        $jumlahSiswa = DB::table('siswas')->count();
+
+        return view('manager', compact('jumlahGuru', 'jumlahSiswa')); //redirect ke view
     }
 
 

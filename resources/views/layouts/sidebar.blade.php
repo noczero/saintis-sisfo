@@ -69,12 +69,33 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
+                        <a href="{{url ('lihat-materi')}}">
                             <i class="material-icons">perm_media</i>
                             <span>Lihat Materi</span>
                         </a>
                     </li>
-                          
+                    <!-- SideBar Menu for Admin -->
+                    @elseif (Auth::guard('admin')->check()) 
+                    <li class="active">
+                        <a href="{{ url('admin') }}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">perm_media</i>
+                            <span>Input Nilai</span>
+                        </a>
+                        <ul class="ml-menu">    
+
+                        @foreach ($kelass as $kelas)
+                            <li>
+                                <a href="{{ url ('input-nilai/'.$kelas->id)}}">Kelas - {{ $kelas->nama_kelas }}</a>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </li>
                     @endif
 
 

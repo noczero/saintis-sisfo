@@ -117,3 +117,10 @@ Route::prefix('upload-materi')->group(function() {
 	Route::post('/upload' , 'UploadMateriController@upload')->name('upload.submit');
 	Route::delete('/destroy/{path}/{file}' , 'UploadMateriController@destroy');
 });
+
+
+Route::get('lihat-materi' , 'LihatMateriController@index');
+
+Route::prefix('input-nilai')->group(function() {
+	Route::get('/{id}' , 'InputNilaiController@index');
+});

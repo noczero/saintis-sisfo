@@ -13,7 +13,7 @@
                         </div>
                         <div class="content">
                             <div class="text">Jumlah Guru</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">125</div>
+                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">{{ $jumlahGuru }}</div>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="content">
                             <div class="text">Jumlah Siswa</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">257</div>
+                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">{{ $jumlahSiswa }}</div>
                         </div>
                     </div>
                 </div>

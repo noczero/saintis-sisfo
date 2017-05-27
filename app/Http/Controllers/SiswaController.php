@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Siswa;
-
+use Auth;
 class SiswaController extends Controller
 {
     /**
@@ -24,7 +24,14 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return view('siswa'); //redirect ke view
+        $user = Auth::user();
+
+        $hadir = DB::table('absensis')->where('siswa_id' , $user->id)->where('absen', 'H')->count();
+        $izin = DB::table('absensis')->where('siswa_id' , $user->id)->where('absen', 'I')->count();
+        $sakit = DB::table('absensis')->where('siswa_id' , $user->id)->where('absen', 'S')->count();
+        $alpha = DB::table('absensis')->where('siswa_id' , $user->id)->where('absen', 'A')->count();
+
+        return view('siswa', compact('hadir' , 'izin' , 'sakit' , 'alpha')); //redirect ke view
     }
 
 
