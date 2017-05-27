@@ -26,7 +26,7 @@ class UploadMateriController extends Controller
 		// }
 		//$gurus = Guru::where('guru_id',$user->id)->with('kelas')->get(); //get many to many data with the pivot 'kelas is the method in model'
 		//dd($gurus);
-		$listFile = Storage::allfiles('materi');
+		$listFile = Storage::allfiles('public');
     	return view('materi.view' , compact('kelass' , 'gurus' , 'listFile'));
     }
 
@@ -46,14 +46,23 @@ class UploadMateriController extends Controller
 	    	//dd($fileName);
 
 	    	$path = Storage::putFileAs(
-			    'materi/'.$request->id , $request->file('materi') , $fileName
+			    'public/materi/'.$request->id , $request->file('materi') , $fileName
 			); // simpan file sesuai path dengan id materi dan namanya sama yang diupload
     	} else {
     		return 'No File Selected';
     	}
 
-    	return $path;
+    	//return $path;
     	//kembali ke materi view
-    	return view('materi.view');
+
+    	return redirect()->route('upload.view');
+    }
+
+    public function destroy($path,$file) {
+    	
+    	//dd($path);
+    	Storage::Delete('public/materi/'.$path.'/'.$file);
+
+    	return redirect()->route('upload.view');
     }
 }

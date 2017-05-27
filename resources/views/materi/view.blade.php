@@ -22,21 +22,35 @@
                         <div class="header">
                             <h2>
                                 List File - {{$kelas->pivot->mapel}}	 
-                                <small><a href="{{ url('upload-materi/'.$kelas->pivot->mapel)}}" class="btn btn-xs">Tambah</a></small>
+                                <small><a href="{{ url('upload-materi/'.$kelas->pivot->mapel)}}" class="btn btn-xs pull-right">Tambah</a></small>
                             </h2>
                         </div>
                         <div class="body">
                         	@for ($i=0; $i < count($listFile); $i++)
-								<p>{{$listFile[$i]}}</p>
-								@php
-									$check = substr( $listFile[$i], 7, strlen($kelas->pivot->mapel))
-								@endphp
+								
+								<?php 
+										$pieces = explode('/',$listFile[$i]);
+										if ($pieces[2] == $kelas->pivot->mapel) {
+												$links = strstr($listFile[$i], '/');
+												echo '<div class="row clear-fix">';
+												echo '<div class="col-md-10 col-xs-10"> <li>';
+												echo '<a href="storage' . $links . '" download>'  .$pieces[3] . '</a>';
+												echo '</li></div>';
 
-								@if ( $check == $kelas->pivot->mapel) 
-									<p>True	</p>
-								@elseif
-								    <p> False</p>
-								@endif
+								?>
+										<div class="col-md-2 col-xs-2">	
+										<form class="form-group" action="{{ 'upload-materi/destroy/'.$pieces[2].'/'.$pieces[3] }}" method="POST">
+											{{csrf_field()}}
+											{{ method_field('DELETE')}}
+											<button class="btn btn-danger btn-xs" type="submit" ><span class="glyphicon glyphicon-trash"></span></button>
+										</form>
+										</div>
+								</div>
+								<?php		
+									}
+								?>
+
+								
 							@endfor
                         </div>
                     </div>

@@ -112,7 +112,8 @@ Route::prefix('absensi-kelas')->group(function() {
 
 
 Route::prefix('upload-materi')->group(function() {
-	Route::get('/' , 'UploadMateriController@index');
+	Route::get('/' , 'UploadMateriController@index')->name('upload.view');
 	Route::get('/{id}' , 'UploadMateriController@create');
 	Route::post('/upload' , 'UploadMateriController@upload')->name('upload.submit');
+	Route::delete('/destroy/{path}/{file}' , 'UploadMateriController@destroy');
 });
