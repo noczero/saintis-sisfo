@@ -50,13 +50,18 @@
                             </li>
                             @endforeach
                         </ul>
-                    
                     </li>
 
                     <li>
                         <a href="{{ url('upload-materi') }}">
                             <i class="material-icons">library_books</i>
                             <span>Upload Materi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('pilih-kelas/'.Auth::user()->id) }}">
+                             <i class="material-icons">library_books</i>
+                            <span>Pilih Kelas</span>
                         </a>
                     </li>
                           

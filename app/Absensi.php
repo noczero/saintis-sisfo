@@ -16,4 +16,5 @@ class Absensi extends Authenticatable
     protected $fillable = ['siswa_id', 'kelas_id' , 'absen'];
 
 
+    
 }

@@ -8,6 +8,10 @@ use App\Siswa;
 use App\Absensi;
 use Illuminate\Http\Request;
 use Auth;
+use Carbon;
+use Illuminate\Support\Facades\DB;
+
+
 
 class AbsensiController extends Controller
 {
@@ -35,8 +39,25 @@ class AbsensiController extends Controller
         $kelass = Guru::find($user->id)->kelas()->get();
 
         $siswas = Kelas::find($id)->siswa;
+        $mytime = Carbon\Carbon::now();
+        $waktuSekarang = $mytime->toDateString();
+        $getwaktuAkhirAbsen = DB::table('absensis')->where('kelas_id' ,$id)->max('created_at');
+        $carbonAbsen = Carbon\Carbon::parse($getwaktuAkhirAbsen);
+        $belumSatuHari = $carbonAbsen->diffInDays(Carbon\Carbon::now());
+        
+        if ($belumSatuHari <= 0) {
+            return view('absensi.already' , compact('kelass'));
+        }
+
+        //if ($waktuAkhirAbsen )
+        //$checkToday = DB::table('absensis')->where('created_at' , '>' , $waktuSekarang )->where('kelas_id' , $id)->count();
+
+        // if ($checkToday > 0) {
+        // }
+        //dd($checkToday);
+        //dd($mytime->toDateTimeString());
         //dd($siswas);
-        return view('absensi.absensiswa', compact('siswas' , 'kelass'));
+        return view('absensi.absensiswa', compact('siswas' , 'kelass' , 'mytime'));
     }
     /**
      * Show the form for creating a new resource.

@@ -14,7 +14,5 @@ class Nilai extends Authenticatable
 
    	protected $fillable = ['siswa_id', 'nilai' ];
 
-   	public function siswa(){
-   		
-   	}
+
 }

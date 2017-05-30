@@ -124,3 +124,10 @@ Route::get('lihat-materi' , 'LihatMateriController@index');
 Route::prefix('input-nilai')->group(function() {
 	Route::get('/{id}' , 'InputNilaiController@index');
 });
+
+Route::prefix('pilih-kelas')->group(function() {
+	Route::get('/{id}' , 'PilihKelasController@index')->name('pilih-kelas.view');
+	Route::get('/create' , 'PilihKelasController@create');
+	Route::post('/store/{id}' , 'PilihKelasController@store');
+	Route::delete('/destroy/{id}' , 'PilihKelasController@destroy');
+});

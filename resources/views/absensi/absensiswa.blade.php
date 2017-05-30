@@ -24,7 +24,7 @@
 		{{-- end part alert --}}
     </div>
     <div class="body">
-
+		
     	<form action="{{ URL('absensi-kelas/store') }}" method="POST">
     	     {{ csrf_field() }}
     		<table class="table">
